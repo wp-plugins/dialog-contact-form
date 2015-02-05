@@ -5,11 +5,13 @@
 }
 #leave_message_button .image {
 	padding-right: 5px;
+  float: left;
 }
 #leave_message_button .text {
   font-size: 14px;
   font-weight: lighter;
   text-transform: none;
+  float: left;
 }
 #leave_message_button {
   position: fixed;
