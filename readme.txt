@@ -11,7 +11,13 @@ A very simple WordPress contact form.
 
 == Description ==
 
-A very simple WordPress contact form. Just install and activate the plugin, a "Leave a message" button will appear at your site bottom right corner. Just click on it, a dialog contact form will appear.
+A very simple WordPress contact form. Just install and activate the plugin, a "Leave a message" button will appear at your site bottom right corner. Just click on it, a dialog contact form will appear. Currently there is no options available for customization. It will just send email to E-mail address of blog administrator.
+
+Current input fields are "Your Name", "Your Email", "Website", "Phone", "Subject", "Your Message", "Captcha Code"
+
+<a target="_blank" href="http://jqueryvalidation.org/">jQuery Validation Plugin</a> has been used for clientside form validation.
+
+<a target="_blank" href="http://getbootstrap.com/javascript/#modals">Bootstrap Modals (modal.js)</a> has been used for styling Dialog Contact Form
 
 
 == Installation ==
