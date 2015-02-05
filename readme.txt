@@ -11,7 +11,11 @@ A very simple WordPress contact form with Captcha validation.
 
 == Description ==
 
-A very simple WordPress contact form. Just install and activate the plugin, a "Leave a message" button will appear at your site bottom right corner. Just click on it, a dialog contact form will appear. Currently there is no options available for customization. It will just send email to E-mail address of blog administrator.
+A very simple WordPress contact form. Just install and activate the plugin, a "Leave a message" button will appear at your site bottom right corner. Just click on it, a dialog contact form will appear. It will just send email to E-mail address of blog administrator.
+
+You can also add contact form at any page by adding the following shortcode
+
+`[dialog_contact_form]`
 
 Current input fields are "Your Name", "Your Email", "Website", "Phone", "Subject", "Your Message", "Captcha Code"
 
