@@ -2,14 +2,90 @@
 /*
  * Plugin Name: Dialog Contact Form
  * Plugin URI: http://wordpress.org/plugins/dialog-contact-form/
- * Description: This is a very simple contact form. Emails will be sent to the site admin email by default.
- * Version: 1.0.0
+ * Description: This is a very simple contact form with Captcha validation.
+ * Version: 1.0.1
  * Author: Sayful Islam
  * Author URI: http://www.sayful.net
  * Text Domain: dialogcf
  * Domain Path: /languages/
  * License: GPL2
 */
+
+// Set up our WordPress Plugin
+function dialog_contact_form_setup()
+{
+	$options_array = array(
+      	'email' => get_option( 'admin_email' ),
+      	'display_dialog' => 'hide',
+    );
+	if ( get_option( 'dialogcf_options' ) !== false ) {
+		// The option already exists, so we just update it.
+      	update_option( 'dialogcf_options', $options_array );
+   } else{
+   		// The option hasn't been added yet. We'll add it with $autoload set to 'no'.
+   		add_option( 'dialogcf_options', $options_array );
+   }
+}
+register_activation_hook( __FILE__, 'dialog_contact_form_setup' );
+
+//register settings
+function dialog_contact_form_settings_init(){
+    register_setting( 'dialogcf_options', 'dialogcf_options' );
+}
+add_action( 'admin_init', 'dialog_contact_form_settings_init' );
+
+class dialogcf_options_page {
+	function __construct() {
+		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+	}
+	function admin_menu () {
+		add_options_page( __('Dialog Contact Form', 'dialogcf'), __('Dialog Contact Form', 'dialogcf'),'manage_options','dialogcf_options_page', array( $this, 'settings_page' ) );
+	}
+	function  settings_page () {
+		if ( !current_user_can( 'manage_options' ) )  {
+			wp_die( __( 'You do not have sufficient permissions to access this page.', 'dialogcf' ) );
+		}
+		?>
+		<div class="wrap">
+		<h2><?php _e('Dialog Contact Form', 'dialogcf'); ?></h2>
+
+		<form method="post" action="options.php">
+
+			<?php 
+				$options = get_option( 'dialogcf_options' );
+				settings_fields( 'dialogcf_options' );
+			?>
+
+		    <table class="form-table">
+		        <tr valign="top">
+		        	<th scope="row">
+		        		<label><?php _e('Mail Receiver Email', 'dialogcf'); ?></label>
+		        	</th>
+		        	<td>
+		        		<input type="email" class="regular-text ltr" name="dialogcf_options[email]" value="<?php esc_attr_e($options['email']); ?>">
+		        	</td>
+		        </tr>
+		         
+		        <tr valign="top">
+		        	<th scope="row">
+		        		<label><?php _e('Show or Hide Dialog Form', 'dialogcf'); ?></label>
+		        	</th>
+			        <td>
+			        	<input type="radio" name="dialogcf_options[display_dialog]" value="show" <?php checked( $options['display_dialog'], 'show' ); ?> >Show Dialog<br>
+			        	<input type="radio" name="dialogcf_options[display_dialog]" value="hide" <?php checked( $options['display_dialog'], 'hide' ); ?> >Hide Dialog<br>
+			        </td>
+		        </tr>
+		    </table>
+		    
+		    <?php submit_button(); ?>
+
+		</form>
+		</div>
+		<?php
+	}
+}
+new dialogcf_options_page;
+
 
 /* Adding Latest jQuery for Wordpress plugin */
 function dialog_contact_form_scripts() {
@@ -24,9 +100,14 @@ function dialog_contact_form_scripts() {
 }
 add_action('init', 'dialog_contact_form_scripts');
 
+$options = get_option( 'dialogcf_options' );
+
+
 session_start();
 
 function dialog_contact_form_shortcode(){
+
+$options = get_option( 'dialogcf_options' );
 
 if ( isset($_POST['send_mail'])) {
 
@@ -81,18 +162,18 @@ if ( isset($_POST['send_mail'])) {
 	// If all validation are true than send mail
 	if ( !isset($hasError) ) {
 
-		$admin_email 	= get_option( 'admin_email' );
+		$to = $options['email'];
 
         $subject = 'Someone sent you a message from '.get_bloginfo('name');
 
         $body = "Name: $fullname \nEmail: $email \nWebsite: $website \nPhone: $phone \n\nSubject: $msgsubject \n\nMessage: $message \n\n";
         $body .= "--\n";
-        $body .= "This mail is sent via contact form on ".get_bloginfo('name')."\n";
+        $body .= "This mail is sent via contact form ".get_bloginfo('name')."\n";
         $body .= home_url();
 
 		$headers = 'From: '.$fullname.' <'.$email.'>' . "\r\n" . 'Reply-To: ' . $email;
 
-		$emailSent 		= wp_mail($admin_email, $subject, $body, $headers);
+		$emailSent 		= wp_mail($to, $subject, $body, $headers);
 	}
 
 	// Show message to user
@@ -181,6 +262,7 @@ ob_end_flush();
 }
 add_shortcode( 'dialog_contact_form', 'dialog_contact_form_shortcode' );
 
+
 function dialog_contact_form_output(){
 	?>
 	<!-- Button trigger modal -->
@@ -222,4 +304,7 @@ function dialog_contact_form_output(){
 	</script>
 	<?php
 }
-add_action('wp_footer','dialog_contact_form_output');
+
+if ( 'show' == $options['display_dialog'] ){
+	add_action('wp_footer','dialog_contact_form_output');
+}

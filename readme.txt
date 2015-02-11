@@ -3,7 +3,7 @@ Contributors: sayful
 Tags: contact, contact form, dialog contact form, email, feedback, form
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,18 +11,19 @@ A very simple WordPress contact form with Captcha validation.
 
 == Description ==
 
-A very simple WordPress contact form. Just install and activate the plugin, a "Leave a message" button will appear at your site bottom right corner. Just click on it, a dialog contact form will appear. It will just send email to E-mail address of blog administrator.
-
-You can also add contact form at any page by adding the following shortcode
+A very simple WordPress contact form with Captcha validation. To add contact form at any page just add the following shortcode
 
 `[dialog_contact_form]`
+
+By default, It will just send email to E-mail address of blog administrator. To change email address go to  `Settings >> Dialog Contact Form` and change email address as your need.
+
+To activate dialog contact form check `Show Dialog`, a "Leave a message" button will appear at your site bottom right corner. Just click on it, a dialog contact form will appear.
 
 Current input fields are "Your Name", "Your Email", "Website", "Phone", "Subject", "Your Message", "Captcha Code"
 
 <a target="_blank" href="http://jqueryvalidation.org/">jQuery Validation Plugin</a> has been used for clientside form validation.
 
 <a target="_blank" href="http://getbootstrap.com/javascript/#modals">Bootstrap Modals (modal.js)</a> has been used for styling Dialog Contact Form
-
 
 == Installation ==
 
@@ -54,12 +55,19 @@ Do you have questions or issues with Dialog Contact Form? [Ask for support here.
 == Screenshots ==
 
 1. Screenshot of Dialog Contact Form button.
-2. Screenshot of Dialog Contact Form on Page.
+2. Screenshot of Dialog Contact Form on Dialog.
+3. Screenshot of Dialog Contact Form on Page.
+4. Screenshot of Dialog Contact Form of Setting Page.
 
 == Changelog ==
 
-= version 1.0 =
-* Implementation of basic functionality.
+= version 1.0.1 =
+* Added Option page.
+* Option to change receiver email address.
+* Option to show or hide Dialog Contact Form.
+
+= version 1.0.0 =
+* Initial release.
 
 == CREDIT ==
 
