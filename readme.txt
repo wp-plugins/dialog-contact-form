@@ -1,9 +1,9 @@
 === Dialog Contact Form ===
-Contributors: sayful
+Contributors: sayful, sayfulit
 Tags: contact, contact form, dialog contact form, email, feedback, form
-Requires at least: 3.0
-Tested up to: 4.1
-Stable tag: 1.0.1
+Requires at least: 3.6
+Tested up to: 4.2
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,9 +21,6 @@ To activate dialog contact form check `Show Dialog`, a "Leave a message" button 
 
 Current input fields are "Your Name", "Your Email", "Website", "Phone", "Subject", "Your Message", "Captcha Code"
 
-<a target="_blank" href="http://jqueryvalidation.org/">jQuery Validation Plugin</a> has been used for clientside form validation.
-
-<a target="_blank" href="http://getbootstrap.com/javascript/#modals">Bootstrap Modals (modal.js)</a> has been used for styling Dialog Contact Form
 
 == Installation ==
 
@@ -61,6 +58,9 @@ Do you have questions or issues with Dialog Contact Form? [Ask for support here.
 
 == Changelog ==
 
+= version 1.1.0 =
+* Implement more functionality to change everything as your need.
+
 = version 1.0.1 =
 * Added Option page.
 * Option to change receiver email address.
@@ -71,7 +71,7 @@ Do you have questions or issues with Dialog Contact Form? [Ask for support here.
 
 == CREDIT ==
 
-1.This plugin was developed by [Sayful Islam](http://sayful.net)
+1.This plugin was developed by [Sayful Islam](http://sayfulit.com)
 
 == CONTACT ==
 
