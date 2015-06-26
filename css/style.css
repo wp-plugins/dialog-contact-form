@@ -1,0 +1,83 @@
+#dialog_contact input[type="submit"] {
+  display: block;
+}
+.shapla-alert {
+  color: #fff;
+  margin: 1em 0;
+  padding: 20px 15px;
+  text-align: center;
+}
+.shapla-alert--green {
+  background: none repeat scroll 0 0 #84c333;
+}
+.shapla-alert--red {
+  background: none repeat scroll 0 0 #d15858;
+}
+#dialog_contact .error {
+	color: #d15858;
+}
+
+#dialog-link {
+	position: fixed;
+	bottom: 0;
+	right: 50px;
+	background-color: #ea632d;
+	color: #ffffff;
+	padding: 5px 15px;
+	z-index: 10;
+	text-decoration: none;
+}
+#dialog-link:hover,
+#dialog-link:active,
+#dialog-link:focus {
+  text-decoration: none;
+  outline: 0 none;
+}
+#dialog-link img {
+  display: inline;
+  float: left;
+  padding: 0;
+  margin: 0 5px 0 0;
+}
+#dialog_contact .captcha-img img{
+  pointer-events: none;
+  margin: 20px 0 0 20px;
+}
+
+#dialog_contact {}
+#dialog_contact p {
+  display: inline-block;
+  float: left;
+  width: 50%;
+  margin-bottom: 10px;
+}
+#dialog_contact p.subject,
+#dialog_contact p.message {
+  display: block;
+  width: 100%;
+}
+#dialog_contact .subject input {
+  display: block;
+  width: 97%;
+}
+#dialog_contact .submit {
+  display: block;
+  width: 97%;
+}
+#dialog_contact .submit input[type="submit"] {
+  display: block;
+  width: auto;
+}
+#dialog_contact .message textarea {
+  display: block;
+  width: 97%;
+}
+
+#dialog_contact label {
+  display: block;
+  padding-bottom: 5px;
+}
+#dialog_contact input {
+  display: block;
+  width: 94%;
+}
