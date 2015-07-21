@@ -106,7 +106,7 @@ class Dialog_Contact_Form {
 	      	'err_message' 		=> __('Please enter at least 15 characters.', 'dialogcf' ),
 	      	'err_captcha' 		=> __('Your entered code is incorrect.', 'dialogcf' ),
 	      	'msg_success' 		=> __('Your message was sent successfully. Thanks.', 'dialogcf' ),
-	      	'msg_fail' 			=> __('Please check the error bellow.', 'dialogcf' ),
+	      	'msg_fail' 			=> __('Please check the error below.', 'dialogcf' ),
 	      	'msg_subject' 		=> __('Someone sent you a message from ', 'dialogcf' ).get_bloginfo('name'),
 	      	'msg_body' 			=> __('This mail is sent via contact form ', 'dialogcf' ).get_bloginfo('name'),
 	      	'dialog_button' 	=> __('Leave a message', 'dialogcf' ),
@@ -132,7 +132,7 @@ class Dialog_Contact_Form {
 		?>
 		<div class="wrap">
 		<h2><?php _e('Dialog Contact Form', 'dialogcf'); ?></h2>
-		<hr><p>To use contact form as dialog, just choose "Show Dialog" from option. If you want to use contact form for page, just copy this shortcode <code>[dialog_contact_form]</code> and paste where you want to show it.</p><hr>
+		<hr><p><?php printf( __('To use contact form as dialog, just choose "Show Dialog" from option. If you want to use contact form for page, just copy this shortcode %s and paste where you want to show it.', 'dialogcf'), '<code>[dialog_contact_form]</code>') ?></p><hr>
 
 		<form method="post" action="options.php">
 
