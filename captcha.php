@@ -1,13 +1,28 @@
 <?php
-session_start();
 
-class CaptchaSecurityImages 
-{
+if (!class_exists('Dialog_Contact_Form_Captcha')):
 
-	var $font = 'fonts/Inconsolata-Bold.ttf';
+class Dialog_Contact_Form_Captcha {
 
-	function generateCode($characters) 
-	{
+	public static $instance = null;
+	private $font = 'fonts/Inconsolata-Bold.ttf';
+
+	public function __construct(){
+
+		if ( self::is_session_started() === FALSE ) session_start();
+
+		$this->createImage('120','40','6');
+	}
+
+
+	public static function instance(){
+		if (self::$instance == null) {
+			self::$instance = new self;
+		}
+		return self::$instance;
+	}
+
+	private function generateCode($characters) {
 		/* list all possible characters, similar looking characters and vowels have been removed */
 		$possible = '23456789bcdfghjkmnpqrstvwxyz';
 		$code = '';
@@ -19,8 +34,7 @@ class CaptchaSecurityImages
 		return $code;
 	}
 
-	function CaptchaSecurityImages($width='120',$height='40',$characters='6') 
-	{
+	public function createImage($width='120',$height='40',$characters='6') {
 		$code = $this->generateCode($characters);
 		/* font size will be 75% of the image height */
 		$font_size = $height * 0.55;
@@ -48,14 +62,22 @@ class CaptchaSecurityImages
 		header('Content-Type: image/jpeg');
 		imagejpeg($image);
 		imagedestroy($image);
-		$_SESSION['security_code'] = $code;
+		$_SESSION['dialog_contact_form'] = $code;
+	}
+
+	private static function is_session_started(){
+	    if ( php_sapi_name() !== 'cli' ) {
+	        if ( version_compare(phpversion(), '5.4.0', '>=') ) {
+	            return session_status() === PHP_SESSION_ACTIVE ? TRUE : FALSE;
+	        } else {
+	            return session_id() === '' ? FALSE : TRUE;
+	        }
+	    }
+	    return FALSE;
 	}
 
 }
+Dialog_Contact_Form_Captcha::instance();
 
-$width = isset($_GET['width']) ? $_GET['width'] : '120';
-$height = isset($_GET['height']) ? $_GET['height'] : '40';
-$characters = isset($_GET['characters']) && $_GET['characters'] > 1 ? $_GET['characters'] : '6';
-
-$captcha = new CaptchaSecurityImages($width,$height,$characters);
+endif;
 ?>

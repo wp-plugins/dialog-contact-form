@@ -345,7 +345,7 @@ class Dialog_Contact_Form {
 
 				$captcha = sanitize_text_field($_POST['captcha']);
 
-				if($captcha != $_SESSION['security_code']){
+				if($captcha != $_SESSION['dialog_contact_form']){
 					$captchaErr = $options['err_captcha'];
 			        $hasError = true;
 				}
@@ -517,7 +517,7 @@ class Dialog_Contact_Form {
 		<?php
 	}
 
-	public static function is_session_started(){
+	private static function is_session_started(){
 	    if ( php_sapi_name() !== 'cli' ) {
 	        if ( version_compare(phpversion(), '5.4.0', '>=') ) {
 	            return session_status() === PHP_SESSION_ACTIVE ? TRUE : FALSE;
